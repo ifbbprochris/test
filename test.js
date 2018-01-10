@@ -1,3 +1,5 @@
+
+/*   One     */
  var permuteUnique = function(nums) {
      return permut(nums.sort(), []);
  };
@@ -31,6 +33,7 @@
 permuteUnique([1,1,2,3]);
 
 
+/*   Two     */
 var minDistance = function(word1, word2) {
     var n=word1.length;
 　var m=word2.length;

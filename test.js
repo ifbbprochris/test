@@ -16,21 +16,17 @@
          }
 
          var arrayWithoutI = nums.slice(0,i).concat(nums.slice(i + 1, nums.length));
-         console.log('arrayWithoutI,',arrayWithoutI);
          var partialSol = partial.concat([nums[i]]);
-         console.log('partialSol,',partialSol);
          var sol = permut(arrayWithoutI, partialSol);
          if(sol.length > 0){
              listSol = listSol.concat(sol);
-             console.log('listSol,',listSol);
          }
          i = endRepeated - 1;
-         console.log('endRepeated,',endRepeated);
      }
      return listSol;
  };
 
-permuteUnique([1,1,2,3]);
+//permuteUnique([1,1,2,3]);
 
 
 /*   Two     */
@@ -72,4 +68,51 @@ var minDistance = function(word1, word2) {
 　return d[n][m];
 };
 
-console.log(minDistance('sitting', 'smiling'));
+//minDistance('sitting', 'smiling');
+
+/*  three    */
+
+var halfFilter = function(nums){
+  if(nums.length == 0) return 'null array';
+
+  var i, candidate = 0;
+  var count = 0;
+  for(var i = 0;i<nums.length;i++){
+    if(count == 0){
+      candidate = nums[i];
+      count = 1;
+    } else if (nums[i] == candidate) {
+      ++count;
+    } else {
+      --count;
+    }
+  }
+
+
+  return candidate;
+}
+
+//halfFilter([1,2,3,4,5,6,1,1,1,1,1,6,6,6,6,6,6,6,6])
+
+/*  four   */
+var trapRainWater = function(nums){
+  var n = nums.length;
+  var l = 0;
+  var water = 0;
+  var minHeight = 0;
+  var r = n - 1;
+  while(l < r) {
+    while(l < r && nums[l] <= minHeight){
+      water += minHeight - nums[l];
+      l = l + 1;
+    }
+    while(l < r && nums[r] <= minHeight){
+      water += minHeight - nums[r];
+      r = r - 1  
+    }
+    minHeight = Math.min(nums[l], nums[r]);
+  }
+  return water;
+}
+
+console.log(trapRainWater([0,1,0,2,1,0,1,3,2,1,2,1]))
